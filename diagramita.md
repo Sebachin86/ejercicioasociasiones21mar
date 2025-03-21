@@ -1,26 +1,38 @@
-´´´mermaid
+```mermaid
 classDiagram
-    class Doctor {
+    class Hotel {
         - string nombre
-        + Doctor(string n)
-        + string obtenerNombre() const
-        + void realizarRevision(Consulta&) const
+        - vector~Habitacion~ habitaciones
+        - vector~Cliente*~ clientes
+        + Hotel(string nombre)
+        + Hotel()
+        + void agregarHabitacion(int numero, string tipo)
+        + void registrarCliente(Cliente* cliente)
+        + void mostrarInfo()
     }
 
-    class Paciente {
+    class Habitacion {
+        - int numero
+        - string tipo
+        - bool ocupada
+        - Cliente* cliente
+        + Habitacion(int numero, string tipo)
+        + Habitacion()
+        + int getNumero()
+        + string getTipo()
+        + bool estaOcupada()
+        + void ocupar(Cliente* cliente)
+        + void desocupar()
+    }
+
+    class Cliente {
+        - int id
         - string nombre
-        + Paciente(string n)
-        + string obtenerNombre() const
-        + void recibirRevision(Consulta&) const
+        + Cliente(int id, string nombre)
+        + Cliente()
+        + int getId()
+        + string getNombre()
     }
-
-    class Consulta {
-        - string fecha
-        - string descripcion
-        + Consulta(string f, string d)
-        + string obtenerFecha() const
-        + string obtenerDescripcion() const
-    }
-
-    Doctor --> Consulta 
-    Paciente --> Consulta 
+Habitacion --> Hotel
+Cliente --> Hotel
+```
