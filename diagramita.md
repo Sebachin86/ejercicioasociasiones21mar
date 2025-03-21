@@ -36,3 +36,51 @@ classDiagram
 Habitacion --> Hotel
 Cliente --> Hotel
 ```
+
+```mermaid
+classDiagram
+    class AgenciaRenta {
+        - string nombre
+        - vector~Auto*~ autos
+        - vector~Cliente*~ clientes
+        + AgenciaRenta(string nombre)
+        + AgenciaRenta()
+        + void agregarAuto(Auto* autoPtr)
+        + void agregarCliente(Cliente* clientePtr)
+        + void mostrarInfo()
+    }
+
+    class Auto {
+        - string placa
+        - string modelo
+        - bool disponible
+        + Auto(string placa, string modelo)
+        + Auto()
+        + string getPlaca()
+        + string getModelo()
+        + bool estaDisponible()
+        + void rentar()
+        + void devolver()
+    }
+
+    class Cliente {
+        - int id
+        - string nombre
+        + Cliente(int id, string nombre)
+        + Cliente()
+        + int getId()
+        + string getNombre()
+    }
+
+    class Contrato {
+        - Cliente* cliente
+        - Auto* autoRentado
+        - int dias
+        + Contrato(Cliente* cliente, Auto* autoRentado, int dias)
+        + Contrato()
+    }
+
+Auto --> Contrato
+Cliente --> Contrato
+Contrato --> AgenciaRenta
+```
